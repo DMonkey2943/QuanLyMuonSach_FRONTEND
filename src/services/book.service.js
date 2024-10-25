@@ -1,29 +1,29 @@
 import createApiClient from './api.service'
 
-class SachService {
+class BookService {
   constructor(baseUrl = '/api/sach') {
     this.api = createApiClient(baseUrl)
   }
 
-  async getAllSach() {
+  async getAllBooks() {
     return (await this.api.get('/')).data
   }
 
-  async createSach(data) {
+  async createBook(data) {
     return (await this.api.post('/', data)).data
   }
 
-  async getSachById(id) {
+  async getBookById(id) {
     return (await this.api.get(`/${id}`)).data
   }
 
-  async updateSach(id, data) {
+  async updateBook(id, data) {
     return (await this.api.put(`/${id}`, data)).data
   }
 
-  async deleteSach(id) {
+  async deleteBook(id) {
     return (await this.api.delete(`/${id}`)).data
   }
 }
 
-export default new SachService()
+export default new BookService()

@@ -1,23 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Books from '@/views/BooksView.vue'
+
+const routes = [
+  {
+    path: '/',
+    name: 'books',
+    component: Books
+  }
+  // {
+  //   path: '/book/:id',
+  //   name: 'book.edit',
+  //   component: () => import('@/views/BookEdit.vue'),
+  //   props: true //Truyền các biến trong $route.params vào làm props
+  // },
+  // {
+  //   path: '/book/add',
+  //   name: 'book.add',
+  //   component: () => import('@/views/BookAdd.vue')
+  // },
+  // {
+  //   path: '/:pathMatch(.*)*',
+  //   name: 'notfound',
+  //   component: () => import('@/views/NotFound.vue')
+  // }
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  routes
 })
 
 export default router
