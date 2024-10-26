@@ -18,9 +18,9 @@
       <ErrorMessage name="TacGia" class="error-feedback" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group" v-if="bookLocal.NhaXuatBan">
       <label for="NhaXuatBan">Nhà xuất bản:</label>
-      <select name="NhaXuatBan" class="form-control" v-model="bookLocal.NhaXuatBan._id">
+      <select name="NhaXuatBan" class="form-control" v-model="this.bookLocal.NhaXuatBan._id">
         <option
           v-for="nxb in publishers"
           :key="nxb._id"
@@ -30,7 +30,26 @@
           {{ nxb.TenNXB }}
         </option>
       </select>
-      <ErrorMessage name="NhaXuatban" class="error-feedback" />
+      <ErrorMessage name="NhaXuatBan" class="error-feedback" />
+    </div>
+    <!-- <div class="form-group" >
+      <label for="NhaXuatBan">Nhà xuất bản:</label>
+      <select name="NhaXuatBan" class="form-control" v-model="bookLocal.NhaXuatBan">
+        <option v-for="nxb in publishers" :key="nxb._id" :value="nxb._id">
+          {{ nxb.TenNXB }}
+        </option>
+      </select>
+      <ErrorMessage name="NhaXuatBan" class="error-feedback" />
+    </div> -->
+
+    <div class="form-group" v-else>
+      <label for="NhaXuatBan">Nhà xuất bản:</label>
+      <select name="NhaXuatBan" class="form-control" v-model="NXBId">
+        <option v-for="nxb in publishers" :key="nxb._id" :value="nxb._id">
+          {{ nxb.TenNXB }}
+        </option>
+      </select>
+      <ErrorMessage name="NhaXuatBan" class="error-feedback" />
     </div>
 
     <div class="form-group">
@@ -77,25 +96,32 @@ export default {
       TenSach: yup.string().required('Tên Sách không được để trống.'),
       TacGia: yup.string().required('Tác giả không được để trống.'),
       NamXuatBan: yup.string().required('Năm xuất bản không được để trống.'),
+      DonGia: yup.string().required('Đơn giá không được để trống.'),
+      //   NhaXuatBan: yup
+      //     .mixed()
+      //     .required('Vui lòng chọn nhà xuất bản')
+      //     .test('isSelected', 'Vui lòng chọn nhà xuất bản hợp lệ', (value) => {
+      //       return value !== null && value !== ''
+      //     }),
       SoQuyen: yup
         .number()
         .required('Số quyển không được để trống.')
-        .min(1, 'Số quyển phải lớn hơn 0')
-      //   HinhAnh: yup
-      //     .mixed()
-      //     .required('Hình ảnh không được để trống')
-      //     .test('fileSize', 'Ảnh phải <5MB', (value) => value && value.size <= 5 * 1024)
-      //     .test(
-      //       'fileFormat',
-      //       'Ảnh không đúng định dạng',
-      //       (value) => value && 'image/png/jpeg'.includes(value.type)
-      //     )
+        .min(1, 'Số quyển phải lớn hơn 0'),
+      HinhAnh: yup
+        .mixed()
+        .required('Vui lòng chọn một hình ảnh')
+        .test('fileType', 'Chỉ chấp nhận hình ảnh (jpg, jpeg, png, gif)', (value) => {
+          return value && ['image/jpeg', 'image/png', 'image/gif'].includes(value.type)
+        })
+        .test('fileSize', 'Kích thước ảnh không vượt quá 5MB', (value) => {
+          return value && value.size <= 5 * 1024 * 1024
+        })
     })
     return {
       bookLocal: this.book,
       bookFormSchema,
       publishers: [],
-      selectedNXBId: null
+      NXBId: null
     }
   },
   methods: {
@@ -109,7 +135,12 @@ export default {
     },
 
     submitBook() {
-      this.$emit('submit:book', this.bookLocal)
+      const bookData = {
+        ...this.bookLocal,
+        NhaXuatBan: this.NXBId || this.bookLocal.NhaXuatBan
+      }
+      console.log(bookData)
+      this.$emit('submit:book', bookData)
     },
     deleteBook() {
       this.$emit('delete:book', this.bookLocal._id)
