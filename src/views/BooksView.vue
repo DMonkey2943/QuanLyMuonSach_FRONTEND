@@ -1,5 +1,5 @@
 <template>
-  <div class="page row">
+  <!-- <div class="page row">
     <div class="mt-3 col-md-6">
       <h4>
         Danh sách Sách
@@ -26,7 +26,7 @@
       <div v-if="activeBook">
         <h4>Chi tiết Sách</h4>
         <BookCard :book="activeBook" />
-        <!-- <router-link
+        <router-link
           :to="{
             name: 'book.edit',
             params: { id: activeBook._id }
@@ -36,20 +36,45 @@
             <i class="fas fa-edit"></i>
             Hiệu chỉnh
           </span>
-        </router-link> -->
+        </router-link>
       </div>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="mt-3">
+      <h4>
+        Danh sách Sách
+        <i class="fas fa-book"></i>
+      </h4>
+
+      <div class="m-3 row justify-content-around-align-items-center">
+        <button class="btn btn-sm btn-primary" @click="refreshList">
+          <i class="fas fa-redo"></i>Làm mới
+        </button>
+        <button class="btn btn-sm btn-success" @click="goToAddBook">
+          <i class="fas fa-plus"></i>Thêm mới
+        </button>
+      </div>
+
+      <BookList
+        v-if="filteredBooksCount > 0"
+        :books="filteredBooks"
+        v-model:activeIndex="activeIndex"
+      />
+      <p v-else>Không có Sách nào.</p>
     </div>
   </div>
 </template>
 
 <script>
-import BookCard from '@/components/BookCard.vue'
+// import BookCard from '@/components/BookCard.vue'
 import BookList from '@/components/BookList.vue'
 import BookService from '@/services/book.service'
 
 export default {
   components: {
-    BookCard,
+    // BookCard,
     BookList
   },
   data() {

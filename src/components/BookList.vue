@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <ul class="list-group">
+  <!-- <ul class="list-group">
     <li
       class="list-group-item"
       v-for="(book, index) in books"
@@ -24,5 +24,36 @@ export default {
     >
       {{ book.TenSach }}
     </li>
-  </ul>
+  </ul> -->
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên Sách</th>
+        <th scope="col">Hình Ảnh</th>
+        <th scope="col">Tác giả</th>
+        <th scope="col">Nhà xuất bản</th>
+        <th scope="col">Năm xuất bản</th>
+        <th scope="col">Số quyển</th>
+        <th scope="col">Đơn giá</th>
+        <th scope="col">Tùy chọn</th>
+      </tr>
+    </thead>
+    <tbody v-for="(book, index) in books" :key="book._id">
+      <tr>
+        <td>{{ index + 1 }}</td>
+        <td scope="row">{{ book.TenSach }}</td>
+        <td>{{ book.HinhAnh }}</td>
+        <td>{{ book.TacGia }}</td>
+        <td>{{ book.NhaXuatBan.TenNXB }}</td>
+        <td>{{ book.NamXuatBan }}</td>
+        <td>{{ book.SoQuyen }}</td>
+        <td>{{ book.DonGia }}</td>
+        <td>
+          <i class="fa-solid fa-pen-to-square"></i>
+          <i class="fa-solid fa-trash-can"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
