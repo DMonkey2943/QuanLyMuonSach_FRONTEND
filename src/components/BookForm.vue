@@ -109,12 +109,13 @@ export default {
         .min(1, 'Số quyển phải lớn hơn 0'),
       HinhAnh: yup
         .mixed()
-        .required('Vui lòng chọn một hình ảnh')
         .test('fileType', 'Chỉ chấp nhận hình ảnh (jpg, jpeg, png, gif)', (value) => {
-          return value && ['image/jpeg', 'image/png', 'image/gif'].includes(value.type)
+          if (!value || typeof value === 'string') return true // Không kiểm tra nếu để trống hoặc là URL
+          return ['image/jpeg', 'image/png', 'image/gif'].includes(value.type)
         })
         .test('fileSize', 'Kích thước ảnh không vượt quá 5MB', (value) => {
-          return value && value.size <= 5 * 1024 * 1024
+          if (!value || typeof value === 'string') return true // Không kiểm tra nếu để trống hoặc là URL
+          return value.size <= 5 * 1024 * 1024
         })
     })
     return {

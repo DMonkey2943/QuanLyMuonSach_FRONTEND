@@ -9,6 +9,7 @@
 <script>
 import BookForm from '@/components/BookForm.vue'
 import BookService from '@/services/book.service'
+import axios from 'axios'
 
 export default {
   components: {
@@ -43,14 +44,32 @@ export default {
 
     async updateBook(data) {
       try {
-        console.log({
-          ...data,
-          NXBId: data.NhaXuatBan._id
+        //     console.log({
+        //       ...data,
+        //       NXBId: data.NhaXuatBan._id
+        //     })
+        //     await BookService.updateBook(this.book._id, {
+        //       ...data,
+        //       NXBId: data.NhaXuatBan._id
+        //     })
+
+        const formData = new FormData()
+        formData.append('TenSach', data.TenSach)
+        formData.append('HinhAnh', data.HinhAnh) // Append file directly
+        formData.append('TacGia', data.TacGia)
+        formData.append('NamXuatBan', data.NamXuatBan)
+        formData.append('SoQuyen', data.SoQuyen)
+        formData.append('DonGia', data.DonGia)
+        formData.append('NXBId', data.NhaXuatBan._id)
+
+        console.log(formData)
+
+        await axios.put(`http://127.0.0.1:3001/api/sach/${this.book._id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         })
-        await BookService.updateBook(this.book._id, {
-          ...data,
-          NXBId: data.NhaXuatBan._id
-        })
+
         alert('Sách được cập nhật thành công')
         this.$router.push({ name: 'books' })
       } catch (error) {
@@ -61,7 +80,7 @@ export default {
     async deleteBook() {
       if (confirm('Bạn muốn xóa Liên hệ này?')) {
         try {
-          await BookService.delete(this.book._id)
+          await BookService.deleteBook(this.book._id)
           this.$router.push({ name: 'books' })
         } catch (error) {
           console.log(error)

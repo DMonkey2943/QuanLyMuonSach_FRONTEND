@@ -26,15 +26,6 @@ export default {
   methods: {
     async createBook(data) {
       try {
-        // console.log({
-        //   ...data,
-        //   NXBId: data.NhaXuatBan
-        // })
-        // await BookService.createBook({
-        //   ...data,
-        //   NXBId: data.NhaXuatBan
-        // })
-
         const formData = new FormData()
         formData.append('TenSach', data.TenSach)
         formData.append('HinhAnh', data.HinhAnh) // Append file directly
@@ -43,8 +34,7 @@ export default {
         formData.append('SoQuyen', data.SoQuyen)
         formData.append('DonGia', data.DonGia)
         formData.append('NXBId', data.NhaXuatBan)
-
-        console.log(formData)
+        // console.log(formData)
 
         await axios.post('http://127.0.0.1:3001/api/sach/', formData, {
           headers: {
@@ -53,7 +43,7 @@ export default {
         })
 
         alert('Sách được thêm mới thành công')
-        this.$router.push({ name: 'book' })
+        this.$router.push({ name: 'books' })
       } catch (error) {
         console.log(error)
       }
