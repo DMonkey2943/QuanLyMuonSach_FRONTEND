@@ -14,17 +14,6 @@ export default {
 </script>
 
 <template>
-  <!-- <ul class="list-group">
-    <li
-      class="list-group-item"
-      v-for="(book, index) in books"
-      :key="book._id"
-      :class="{ active: index === activeIndex }"
-      @click="updateActiveIndex(index)"
-    >
-      {{ book.TenSach }}
-    </li>
-  </ul> -->
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
@@ -43,7 +32,14 @@ export default {
       <tr>
         <td>{{ index + 1 }}</td>
         <td scope="row">{{ book.TenSach }}</td>
-        <td>{{ book.HinhAnh }}</td>
+        <td>
+          <img
+            v-if="book.HinhAnh"
+            :src="book.HinhAnh"
+            alt="Hình ảnh sách"
+            style="max-width: 80px"
+          />
+        </td>
         <td>{{ book.TacGia }}</td>
         <td>{{ book.NhaXuatBan.TenNXB }}</td>
         <td>{{ book.NamXuatBan }}</td>
