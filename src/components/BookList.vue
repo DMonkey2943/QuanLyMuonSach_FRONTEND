@@ -50,7 +50,17 @@ export default {
         <td>{{ book.SoQuyen }}</td>
         <td>{{ book.DonGia }}</td>
         <td>
-          <i class="fa-solid fa-pen-to-square"></i>
+          <router-link
+            :to="{
+              name: 'book.edit',
+              params: { id: book._id }
+            }"
+          >
+            <span class="mt-2 badge badge-warning">
+              <i class="fas fa-edit"></i>
+              Hiệu chỉnh
+            </span>
+          </router-link>
           <i class="fa-solid fa-trash-can"></i>
         </td>
       </tr>

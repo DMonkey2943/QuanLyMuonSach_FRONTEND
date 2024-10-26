@@ -21,12 +21,12 @@ const routes = [
     component: Books,
     meta: { requiresAuth: true }
   },
-  // {
-  //   path: '/book/:id',
-  //   name: 'book.edit',
-  //   component: () => import('@/views/BookEdit.vue'),
-  //   props: true //Truyền các biến trong $route.params vào làm props
-  // },
+  {
+    path: '/book/:id',
+    name: 'book.edit',
+    component: () => import('@/views/BookEdit.vue'),
+    props: true //Truyền các biến trong $route.params vào làm props
+  },
   // {
   //   path: '/book/add',
   //   name: 'book.add',
