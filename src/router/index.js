@@ -20,7 +20,7 @@ const routes = [
     name: 'books',
     component: Books,
     meta: { requiresAuth: true }
-  }
+  },
   // {
   //   path: '/book/:id',
   //   name: 'book.edit',
@@ -32,11 +32,11 @@ const routes = [
   //   name: 'book.add',
   //   component: () => import('@/views/BookAdd.vue')
   // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: 'notfound',
-  //   component: () => import('@/views/NotFound.vue')
-  // }
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notfound',
+    component: () => import('@/views/NotFound.vue')
+  }
 ]
 
 const router = createRouter({
