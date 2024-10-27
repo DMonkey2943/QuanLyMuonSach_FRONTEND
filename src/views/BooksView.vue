@@ -1,46 +1,4 @@
 <template>
-  <!-- <div class="page row">
-    <div class="mt-3 col-md-6">
-      <h4>
-        Danh sách Sách
-        <i class="fas fa-address-book"></i>
-      </h4>
-      <BookList
-        v-if="filteredBooksCount > 0"
-        :books="filteredBooks"
-        v-model:activeIndex="activeIndex"
-      />
-      <p v-else>Không có Sách nào.</p>
-
-      <div class="mt-3 row justify-content-around-align-items-center">
-        <button class="btn btn-sm btn-primary" @click="refreshList">
-          <i class="fas fa-redo"></i>Làm mới
-        </button>
-        <button class="btn btn-sm btn-success" @click="goToAddBook">
-          <i class="fas fa-plus"></i>Thêm mới
-        </button>
-      </div>
-    </div>
-
-    <div class="mt-3 col-md-6">
-      <div v-if="activeBook">
-        <h4>Chi tiết Sách</h4>
-        <BookCard :book="activeBook" />
-        <router-link
-          :to="{
-            name: 'book.edit',
-            params: { id: activeBook._id }
-          }"
-        >
-          <span class="mt-2 badge badge-warning">
-            <i class="fas fa-edit"></i>
-            Hiệu chỉnh
-          </span>
-        </router-link>
-      </div>
-    </div>
-  </div> -->
-
   <div class="row">
     <div class="mt-3">
       <h4>
@@ -52,7 +10,7 @@
         <button class="btn btn-sm btn-primary" @click="refreshList">
           <i class="fas fa-redo"></i>Làm mới
         </button>
-        <button class="btn btn-sm btn-success" @click="goToAddBook">
+        <button class="ml-4 btn btn-sm btn-success" @click="goToAddBook">
           <i class="fas fa-plus"></i>Thêm mới
         </button>
       </div>
