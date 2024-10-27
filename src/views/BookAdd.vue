@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <h4>Thêm Liên hệ</h4>
+    <h4>Thêm Sách</h4>
     <BookForm :book="book" @submit:book="createBook" />
     <p>{{ message }}</p>
   </div>

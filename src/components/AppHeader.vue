@@ -9,7 +9,14 @@
         </router-link>
       </li>
 
-      <li class="nav-item ml-4" v-if="!isLoggedIn">
+      <li class="nav-item ml-3">
+        <router-link :to="{ name: 'publishers' }" class="nav-link">
+          Nhà xuất bản
+          <i class="fa-solid fa-building-user"></i>
+        </router-link>
+      </li>
+
+      <li class="nav-item ml-5" v-if="!isLoggedIn">
         <router-link :to="{ name: 'login' }" class="nav-link">
           Đăng nhập
           <i class="fa-solid fa-user-lock"></i>

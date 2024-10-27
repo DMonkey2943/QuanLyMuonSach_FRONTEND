@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Books from '@/views/BooksView.vue'
+import Publishers from '@/views/PublishersView.vue'
 import Login from '@/views/LoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 
@@ -25,12 +26,33 @@ const routes = [
     path: '/book/:id',
     name: 'book.edit',
     component: () => import('@/views/BookEdit.vue'),
-    props: true //Truyền các biến trong $route.params vào làm props
+    props: true, //Truyền các biến trong $route.params vào làm props
+    meta: { requiresAuth: true }
   },
   {
     path: '/book/add',
     name: 'book.add',
-    component: () => import('@/views/BookAdd.vue')
+    component: () => import('@/views/BookAdd.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/publishers',
+    name: 'publishers',
+    component: Publishers,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/publisher/:id',
+    name: 'publisher.edit',
+    component: () => import('@/views/PublisherEdit.vue'),
+    props: true, //Truyền các biến trong $route.params vào làm props
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/publisher/add',
+    name: 'publisher.add',
+    component: () => import('@/views/PublisherAdd.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/:pathMatch(.*)*',
