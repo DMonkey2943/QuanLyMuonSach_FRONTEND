@@ -16,6 +16,13 @@
         </router-link>
       </li>
 
+      <li class="nav-item ml-3">
+        <router-link :to="{ name: 'employees' }" class="nav-link">
+          Nhân viên
+          <i class="fa-solid fa-users-gear"></i>
+        </router-link>
+      </li>
+
       <li class="nav-item ml-5" v-if="!isLoggedIn">
         <router-link :to="{ name: 'login' }" class="nav-link">
           Đăng nhập
