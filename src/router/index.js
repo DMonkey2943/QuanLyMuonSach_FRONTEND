@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Books from '@/views/BooksView.vue'
 import Publishers from '@/views/PublishersView.vue'
 import Employees from '@/views/EmployeesView.vue'
+import Readers from '@/views/ReadersView.vue'
 import Login from '@/views/LoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 
@@ -72,6 +73,25 @@ const routes = [
     path: '/employee/add',
     name: 'employee.add',
     component: () => import('@/views/EmployeeAdd.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/readers',
+    name: 'readers',
+    component: Readers,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/reader/:id',
+    name: 'reader.edit',
+    component: () => import('@/views/ReaderEdit.vue'),
+    props: true, //Truyền các biến trong $route.params vào làm props
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/reader/add',
+    name: 'reader.add',
+    component: () => import('@/views/ReaderAdd.vue'),
     meta: { requiresAuth: true }
   },
   {

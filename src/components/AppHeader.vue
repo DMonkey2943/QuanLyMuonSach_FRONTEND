@@ -23,6 +23,13 @@
         </router-link>
       </li>
 
+      <li class="nav-item ml-3">
+        <router-link :to="{ name: 'readers' }" class="nav-link">
+          Độc giả
+          <i class="fa-solid fa-user-group"></i>
+        </router-link>
+      </li>
+
       <li class="nav-item ml-5" v-if="!isLoggedIn">
         <router-link :to="{ name: 'login' }" class="nav-link">
           Đăng nhập
