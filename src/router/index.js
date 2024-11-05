@@ -5,6 +5,7 @@ import Employees from '@/views/EmployeesView.vue'
 import Readers from '@/views/ReadersView.vue'
 import Login from '@/views/LoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
+import BorrowBooks from '@/views/BorrowBookView.vue'
 
 const routes = [
   {
@@ -92,6 +93,26 @@ const routes = [
     path: '/reader/add',
     name: 'reader.add',
     component: () => import('@/views/ReaderAdd.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/borrowBooks',
+    name: 'borrowBooks',
+    component: BorrowBooks,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/borrowBooks/book/:id',
+    name: 'borrowBooksByBook',
+    component: () => import('@/views/BorrowBookByBookView.vue'),
+    props: true, //Truyền các biến trong $route.params vào làm props
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/borrowBooks/reader/:id',
+    name: 'borrowBooksByReader',
+    component: () => import('@/views/BorrowBookByReaderView.vue'),
+    props: true, //Truyền các biến trong $route.params vào làm props
     meta: { requiresAuth: true }
   },
   {

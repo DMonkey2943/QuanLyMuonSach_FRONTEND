@@ -17,9 +17,9 @@
       </li>
 
       <li class="nav-item ml-3">
-        <router-link :to="{ name: 'employees' }" class="nav-link">
-          Nhân viên
-          <i class="fa-solid fa-users-gear"></i>
+        <router-link :to="{ name: 'borrowBooks' }" class="nav-link">
+          Theo dõi mượn sách
+          <i class="fa-solid fa-book-open-reader"></i>
         </router-link>
       </li>
 
@@ -27,6 +27,13 @@
         <router-link :to="{ name: 'readers' }" class="nav-link">
           Độc giả
           <i class="fa-solid fa-user-group"></i>
+        </router-link>
+      </li>
+
+      <li class="nav-item ml-3">
+        <router-link :to="{ name: 'employees' }" class="nav-link">
+          Nhân viên
+          <i class="fa-solid fa-users-gear"></i>
         </router-link>
       </li>
 
