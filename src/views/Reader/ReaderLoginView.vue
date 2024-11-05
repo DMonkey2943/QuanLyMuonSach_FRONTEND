@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header text-center">
             <h4>Đăng nhập</h4>
-            <p>Bạn là nhân viên? Hãy đăng nhập ngay nhé!</p>
+            <p>Bạn là độc giả? Hãy đăng nhập ngay để Mượn sách nhé!</p>
           </div>
           <div class="card-body">
             <p class="text-danger text-center">{{ messageError }}</p>
@@ -50,7 +50,7 @@ export default {
       payload: {
         Email: '',
         MatKhau: '',
-        VaiTro: 'nhanvien'
+        VaiTro: 'docgia'
       },
       messageError: ''
     }
@@ -66,7 +66,7 @@ export default {
         localStorage.setItem('token', token) // Store token in localStorage
         localStorage.setItem('id', payload.id) // Save user ID
         localStorage.setItem('role', payload.role) // Save user role
-        const redirect = this.$route.query.redirect || '/books' // Lấy đường dẫn redirect hoặc mặc định là /books
+        const redirect = this.$route.query.redirect || '/reader/books' // Lấy đường dẫn redirect hoặc mặc định là /books
         this.$router.push(redirect)
       } catch (error) {
         if (error.response && error.response.data && error.response.data.message) {

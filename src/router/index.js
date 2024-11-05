@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Books from '@/views/BooksView.vue'
+import ReaderBooks from '@/views/Reader/BooksView.vue'
 import Publishers from '@/views/PublishersView.vue'
 import Employees from '@/views/EmployeesView.vue'
 import Readers from '@/views/ReadersView.vue'
 import Login from '@/views/LoginView.vue'
+import ReaderLogin from '@/views/Reader/ReaderLoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import BorrowBooks from '@/views/BorrowBookView.vue'
 
@@ -18,6 +20,17 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/reader/login',
+    name: 'reader.login',
+    component: ReaderLogin
+  },
+  {
+    path: '/reader/books',
+    name: 'reader.books',
+    component: ReaderBooks,
+    meta: { requiresAuth: true }
   },
   {
     path: '/books',
