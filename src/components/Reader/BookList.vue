@@ -13,12 +13,22 @@ export default {
     },
     async borrowBook(book) {
       try {
-        const data = {
-          DocGiaId: localStorage.getItem('id'),
-          SachId: book._id
+        const check = await BorrowBookService.checkBookAvailable(book._id)
+        console.log(check)
+        if (check.available) {
+          try {
+            const data = {
+              DocGiaId: localStorage.getItem('id'),
+              SachId: book._id
+            }
+            await BorrowBookService.createBorrowBook(data)
+            alert(`Bạn đã mượn sách "${book.TenSach}"!`)
+          } catch (error) {
+            console.log(error)
+          }
+        } else {
+          alert(`Sách "${book.TenSach}" hiện tại đã hết. Hãy mượn sách khác nhé!`)
         }
-        await BorrowBookService.createBorrowBook(data)
-        alert(`Bạn đã mượn sách "${book.TenSach}"!`)
       } catch (error) {
         console.log(error)
       }
