@@ -11,7 +11,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'books' }" class="nav-link">
+          <router-link :to="{ name: 'reader.borrowBooks' }" class="nav-link">
             Lịch sử mượn sách
             <i class="fas fa-book"></i>
           </router-link>
@@ -36,6 +36,7 @@
           </div>
         </li>
       </div>
+
       <!-- nhanvien -->
       <div class="mr-auto navbar-nav" v-else>
         <li class="nav-item">
@@ -93,6 +94,8 @@
         </li>
       </div>
     </div>
+
+    <!-- Chưa đăng nhập -->
     <div class="mr-auto navbar-nav" v-else>
       <li class="nav-item mr-5">
         <router-link :to="{ name: 'reader.login' }" class="nav-link">

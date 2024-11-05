@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Books from '@/views/BooksView.vue'
 import ReaderBooks from '@/views/Reader/BooksView.vue'
+import ReaderBorrowBooks from '@/views/Reader/HistoryBorrowBookView.vue'
 import Publishers from '@/views/PublishersView.vue'
 import Employees from '@/views/EmployeesView.vue'
 import Readers from '@/views/ReadersView.vue'
@@ -30,6 +31,12 @@ const routes = [
     path: '/reader/books',
     name: 'reader.books',
     component: ReaderBooks,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/reader/borrowBooks',
+    name: 'reader.borrowBooks',
+    component: ReaderBorrowBooks,
     meta: { requiresAuth: true }
   },
   {
