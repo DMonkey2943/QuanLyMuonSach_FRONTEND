@@ -1,9 +1,12 @@
 <template>
   <div class="row">
+    <div class="col-md-10">
+      <InputSearch v-model="searchText" />
+    </div>
     <div class="mt-3">
       <h4>
         Mượn sách
-        <i class="fas fa-book"></i>
+        <i class="fa-solid fa-book-open-reader"></i>
       </h4>
 
       <div class="m-3 row justify-content-around-align-items-center">
@@ -25,20 +28,28 @@
 <script>
 // import BookCard from '@/components/BookCard.vue'
 import BookList from '@/components/Reader/BookList.vue'
+import InputSearch from '@/components/InputSearch.vue'
 import BookService from '@/services/book.service'
 
 export default {
   components: {
-    // BookCard,
+    InputSearch,
     BookList
   },
   data() {
     return {
       books: [],
-      activeIndex: -1
+      activeIndex: -1,
+      searchText: ''
     }
   },
-  watch: {},
+  watch: {
+    // Giam sat cac thay doi cua bien searchText.
+    // Bo chon phan tu dang duoc chon trong danh sach
+    searchText() {
+      this.activeIndex = -1
+    }
+  },
   computed: {
     // Chuyen cac doi tuong Contact thanh chuoi de tien cho tim kiem:
     bookStrings() {
@@ -49,7 +60,10 @@ export default {
     },
     // Tra ve cac Contact co chua thong tin can tim kiem:
     filteredBooks() {
-      return this.books
+      if (!this.searchText) {
+        return this.books
+      }
+      return this.books.filter((book, index) => this.bookStrings[index].includes(this.searchText))
     },
     activeBook() {
       if (this.activeIndex < 0) return null

@@ -3,7 +3,7 @@
     <div class="mt-3">
       <h4>
         Lịch sử mượn sách
-        <i class="fa-solid fa-book-open-reader"></i>
+        <i class="fa-solid fa-clock-rotate-left"></i>
       </h4>
 
       <h5 class="text-success ml-3">
