@@ -6,14 +6,14 @@
       <div class="mr-auto navbar-nav" v-if="role == 'docgia'">
         <li class="nav-item">
           <router-link :to="{ name: 'reader.books' }" class="nav-link">
-            Sách
-            <i class="fas fa-book"></i>
+            Mượn sách
+            <i class="fa-solid fa-book-open-reader"></i>
           </router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ml-3">
           <router-link :to="{ name: 'reader.borrowBooks' }" class="nav-link">
             Lịch sử mượn sách
-            <i class="fas fa-book"></i>
+            <i class="fa-solid fa-clock-rotate-left"></i>
           </router-link>
         </li>
         <li class="nav-item dropdown ml-5">
@@ -26,7 +26,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{ this.user.HoTen }} <i class="fa-solid fa-user"></i>
+            Xin chào, {{ this.user.HoTen }} <i class="fa-solid fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a @click="logout" class="dropdown-item">
@@ -83,7 +83,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{ this.user.HoTen }} <i class="fa-solid fa-user"></i>
+            Xin chào, {{ this.user.HoTen }} <i class="fa-solid fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a @click="logout" class="dropdown-item">
