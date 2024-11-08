@@ -8,8 +8,19 @@
 
     <div class="form-group">
       <label for="HinhAnh">Hình ảnh:</label>
-      <Field name="HinhAnh" type="file" class="form-control" v-model="bookLocal.HinhAnh" />
+      <Field
+        name="HinhAnh"
+        type="file"
+        class="form-control"
+        v-model="bookLocal.HinhAnh"
+        @change="previewImage"
+      />
       <ErrorMessage name="HinhAnh" class="error-feedback" />
+      <!-- Hiển thị hình ảnh xem trước -->
+      <div v-if="imagePreview" class="mt-2 ml-5">
+        <p>Hình ảnh xem trước:</p>
+        <img :src="imagePreview" alt="Preview" class="img-thumbnail" style="max-width: 160px" />
+      </div>
     </div>
 
     <div class="form-group">
@@ -122,7 +133,8 @@ export default {
       bookLocal: this.book,
       bookFormSchema,
       publishers: [],
-      NXBId: null
+      NXBId: null,
+      imagePreview: null
     }
   },
   methods: {
@@ -132,6 +144,13 @@ export default {
         this.publishers = response.data
       } catch (error) {
         console.error('Lỗi khi lấy danh sách nhà xuất bản:', error)
+      }
+    },
+
+    previewImage(event) {
+      const file = event.target.files[0]
+      if (file) {
+        this.imagePreview = URL.createObjectURL(file) // Tạo URL xem trước
       }
     },
 
