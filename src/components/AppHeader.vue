@@ -189,11 +189,16 @@ export default {
     },
     logout() {
       // Xóa token và chuyển hướng về trang đăng nhập
+      const role = localStorage.getItem('role')
       localStorage.removeItem('token')
       localStorage.removeItem('role')
       localStorage.removeItem('id')
       this.isLoggedIn = false
-      this.$router.push({ name: 'reader.login' })
+      if (role == 'docgia') {
+        this.$router.push({ name: 'reader.login' })
+      } else {
+        this.$router.push({ name: 'login' })
+      }
     }
   }
 }
