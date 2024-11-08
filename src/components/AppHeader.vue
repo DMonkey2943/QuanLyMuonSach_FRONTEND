@@ -98,6 +98,12 @@
     <!-- Chưa đăng nhập -->
     <div class="mr-auto navbar-nav" v-else>
       <li class="nav-item mr-5">
+        <router-link :to="{ name: 'reader.register' }" class="nav-link">
+          Độc giả đăng ký
+          <i class="fa-solid fa-user-pen"></i>
+        </router-link>
+      </li>
+      <li class="nav-item mr-5">
         <router-link :to="{ name: 'reader.login' }" class="nav-link">
           Độc giả đăng nhập
           <i class="fa-solid fa-user-lock"></i>

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-11">
       <InputSearch v-model="searchText" />
     </div>
     <div class="mt-3">

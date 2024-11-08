@@ -7,6 +7,7 @@ import Employees from '@/views/EmployeesView.vue'
 import Readers from '@/views/ReadersView.vue'
 import Login from '@/views/LoginView.vue'
 import ReaderLogin from '@/views/Reader/ReaderLoginView.vue'
+import ReaderRegister from '@/views/Reader/ReaderRegisterView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import BorrowBooks from '@/views/BorrowBookView.vue'
 
@@ -26,6 +27,11 @@ const routes = [
     path: '/reader/login',
     name: 'reader.login',
     component: ReaderLogin
+  },
+  {
+    path: '/reader/register',
+    name: 'reader.register',
+    component: ReaderRegister
   },
   {
     path: '/reader/books',
