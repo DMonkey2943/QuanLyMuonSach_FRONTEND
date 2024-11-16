@@ -43,20 +43,11 @@
       </select>
       <ErrorMessage name="NhaXuatBan" class="error-feedback" />
     </div>
-    <!-- <div class="form-group" >
-      <label for="NhaXuatBan">Nhà xuất bản:</label>
-      <select name="NhaXuatBan" class="form-control" v-model="bookLocal.NhaXuatBan">
-        <option v-for="nxb in publishers" :key="nxb._id" :value="nxb._id">
-          {{ nxb.TenNXB }}
-        </option>
-      </select>
-      <ErrorMessage name="NhaXuatBan" class="error-feedback" />
-    </div> -->
 
     <div class="form-group" v-else>
       <label for="NhaXuatBan">Nhà xuất bản:</label>
       <select name="NhaXuatBan" class="form-control" v-model="NXBId">
-        <option v-for="nxb in publishers" :key="nxb._id" :value="nxb._id">
+        <option v-for="nxb in publishers" :key="nxb._id" :value="nxb._id" selected>
           {{ nxb.TenNXB }}
         </option>
       </select>
@@ -108,18 +99,15 @@ export default {
       TacGia: yup.string().required('Tác giả không được để trống.'),
       NamXuatBan: yup.string().required('Năm xuất bản không được để trống.'),
       DonGia: yup.string().required('Đơn giá không được để trống.'),
-      //   NhaXuatBan: yup
-      //     .mixed()
-      //     .required('Vui lòng chọn nhà xuất bản')
-      //     .test('isSelected', 'Vui lòng chọn nhà xuất bản hợp lệ', (value) => {
-      //       return value !== null && value !== ''
-      //     }),
       SoQuyen: yup
         .number()
         .required('Số quyển không được để trống.')
         .min(1, 'Số quyển phải lớn hơn 0'),
       HinhAnh: yup
         .mixed()
+        .required('Hình ảnh không được để trống.', () => {
+          if (this.bookLocal._id) return true
+        })
         .test('fileType', 'Chỉ chấp nhận hình ảnh (jpg, jpeg, png, gif)', (value) => {
           if (!value || typeof value === 'string') return true // Không kiểm tra nếu để trống hoặc là URL
           return ['image/jpeg', 'image/png', 'image/gif'].includes(value.type)
@@ -142,6 +130,10 @@ export default {
       try {
         const response = await axios.get('http://localhost:3001/api/nhaxuatban')
         this.publishers = response.data
+        // Gán NXBId là nhà xuất bản đầu tiên trong BookAdd
+        if (this.publishers.length > 0 && !this.bookLocal.NhaXuatBan) {
+          this.NXBId = this.publishers[0]._id
+        }
       } catch (error) {
         console.error('Lỗi khi lấy danh sách nhà xuất bản:', error)
       }

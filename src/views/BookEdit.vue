@@ -62,7 +62,7 @@ export default {
         formData.append('DonGia', data.DonGia)
         formData.append('NXBId', data.NhaXuatBan._id)
 
-        console.log(formData)
+        // console.log(formData)
 
         await axios.put(`http://127.0.0.1:3001/api/sach/${this.book._id}`, formData, {
           headers: {
