@@ -21,17 +21,20 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+    meta: { guestOnly: true }
   },
   {
     path: '/reader/login',
     name: 'reader.login',
-    component: ReaderLogin
+    component: ReaderLogin,
+    meta: { guestOnly: true }
   },
   {
     path: '/reader/register',
     name: 'reader.register',
-    component: ReaderRegister
+    component: ReaderRegister,
+    meta: { guestOnly: true }
   },
   {
     path: '/reader/books',
@@ -157,6 +160,17 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   const role = localStorage.getItem('role') // Lấy vai trò từ localStorage
+
+  // Route yêu cầu người dùng chưa đăng nhập
+  if (to.matched.some((record) => record.meta.guestOnly)) {
+    if (token) {
+      // Nếu người dùng đã đăng nhập, chuyển hướng họ đến dashboard
+      next({ name: 'dashboard' })
+    } else {
+      next() // Nếu chưa đăng nhập, cho phép tiếp tục
+    }
+    return // Kết thúc guard cho guestOnly route
+  }
 
   // Kiểm tra xem route có yêu cầu đăng nhập không
   if (to.matched.some((record) => record.meta.requiresAuth)) {
