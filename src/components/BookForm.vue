@@ -102,7 +102,7 @@ export default {
       SoQuyen: yup
         .number()
         .required('Số quyển không được để trống.')
-        .min(1, 'Số quyển phải lớn hơn 0'),
+        .min(0, 'Số quyển không được âm'),
       HinhAnh: yup
         .mixed()
         .required('Hình ảnh không được để trống.', () => {

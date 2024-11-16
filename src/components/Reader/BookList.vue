@@ -47,7 +47,7 @@ export default {
         <th scope="col">Tác giả</th>
         <th scope="col">Nhà xuất bản</th>
         <th scope="col">Năm xuất bản</th>
-        <!-- <th scope="col">Số quyển</th> -->
+        <th scope="col">Số quyển</th>
         <th scope="col">Đơn giá</th>
         <th scope="col">Tùy chọn</th>
       </tr>
@@ -67,7 +67,7 @@ export default {
         <td>{{ book.TacGia }}</td>
         <td>{{ book.NhaXuatBan.TenNXB }}</td>
         <td>{{ book.NamXuatBan }}</td>
-        <!-- <td>{{ book.SoQuyen }}</td> -->
+        <td>{{ book.SoQuyen }}</td>
         <td>{{ book.DonGia }}</td>
         <td>
           <button type="button" class="btn btn-success" @click="borrowBook(book)">Mượn sách</button>
