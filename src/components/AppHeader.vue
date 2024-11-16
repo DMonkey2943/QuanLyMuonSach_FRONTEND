@@ -1,10 +1,14 @@
 <template>
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="" class="navbar-brand">Quản lý mượn sách</a>
+    <a href="/" class="navbar-brand font-weight-bold">
+      Thư viện 449
+      <img width="40px" src="https://cdn-icons-png.flaticon.com/512/3429/3429149.png" alt="" />
+    </a>
+
     <div v-if="isLoggedIn">
       <!-- docgia -->
       <div class="mr-auto navbar-nav" v-if="role == 'docgia'">
-        <li class="nav-item">
+        <li class="nav-item ml-2">
           <router-link :to="{ name: 'reader.books' }" class="nav-link">
             Mượn sách
             <i class="fa-solid fa-book-open-reader"></i>
@@ -39,7 +43,7 @@
 
       <!-- nhanvien -->
       <div class="mr-auto navbar-nav" v-else>
-        <li class="nav-item">
+        <li class="nav-item ml-2">
           <router-link :to="{ name: 'books' }" class="nav-link">
             Sách
             <i class="fas fa-book"></i>
