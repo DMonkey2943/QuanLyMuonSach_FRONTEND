@@ -19,6 +19,7 @@
         v-if="filteredBooksCount > 0"
         :books="filteredBooks"
         v-model:activeIndex="activeIndex"
+        @refresh-list="refreshList"
       />
       <p v-else>Không có Sách nào.</p>
     </div>

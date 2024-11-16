@@ -139,6 +139,7 @@ export default {
       )
       // Refresh the list
       this.refreshList()
+      this.getBook(this.id)
     }
   },
   created() {

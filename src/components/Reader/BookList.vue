@@ -23,6 +23,7 @@ export default {
             }
             await BorrowBookService.createBorrowBook(data)
             alert(`Bạn đã mượn sách "${book.TenSach}"!`)
+            this.$emit('refresh-list')
           } catch (error) {
             console.log(error)
           }
