@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top">
     <a href="/" class="navbar-brand font-weight-bold">
       Thư viện 449
       <img width="40px" src="https://cdn-icons-png.flaticon.com/512/3429/3429149.png" alt="" />
@@ -139,6 +139,10 @@ export default {
     this.checkLoginStatus()
     this.checkRole()
     this.getUser()
+    this.$root.emitter.on('loginStatusChanged', this.checkLoginStatus)
+  },
+  beforeUnmount() {
+    this.$root.emitter.on('loginStatusChanged', this.checkLoginStatus)
   },
   methods: {
     checkLoginStatus() {
@@ -146,6 +150,10 @@ export default {
       const token = localStorage.getItem('token')
       // console.log(token)
       this.isLoggedIn = !!token // Nếu có token thì isLoggedIn = true
+      if (token) {
+        this.checkRole()
+        this.getUser()
+      }
     },
     checkRole() {
       // Kiểm tra token trong localStorage

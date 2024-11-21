@@ -66,6 +66,9 @@ export default {
         localStorage.setItem('token', token) // Store token in localStorage
         localStorage.setItem('id', payload.id) // Save user ID
         localStorage.setItem('role', payload.role) // Save user role
+
+        this.$root.emitter.emit('loginStatusChanged')
+
         const redirect = this.$route.query.redirect || '/reader/books' // Lấy đường dẫn redirect hoặc mặc định là /books
         this.$router.push(redirect)
       } catch (error) {
