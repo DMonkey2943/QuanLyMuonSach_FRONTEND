@@ -71,7 +71,7 @@
           </router-link>
         </li>
 
-        <li class="nav-item ml-3">
+        <li class="nav-item ml-3" v-if="role == 'admin'">
           <router-link :to="{ name: 'employees' }" class="nav-link">
             Nhân viên
             <i class="fa-solid fa-users-gear"></i>

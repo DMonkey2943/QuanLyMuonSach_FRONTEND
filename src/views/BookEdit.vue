@@ -78,7 +78,7 @@ export default {
     },
 
     async deleteBook() {
-      if (confirm('Bạn muốn xóa Liên hệ này?')) {
+      if (confirm('Bạn muốn xóa Sách này?')) {
         try {
           await BookService.deleteBook(this.book._id)
           this.$router.push({ name: 'books' })
